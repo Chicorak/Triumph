@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://fe53fk38xa7f"
-path="res://.godot/imported/mr_k_smile.png-89431ec92ea8c99a660e9222506c1aba.ctex"
+path="res://.godot/imported/mr_k_smile.png-3b131941492bffb1a2dce7e16cd18266.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/player/mr_k_smile.png"
-dest_files=["res://.godot/imported/mr_k_smile.png-89431ec92ea8c99a660e9222506c1aba.ctex"]
+source_file="res://Assets/Player/mr_k_smile.png"
+dest_files=["res://.godot/imported/mr_k_smile.png-3b131941492bffb1a2dce7e16cd18266.ctex"]
 
 [params]
 

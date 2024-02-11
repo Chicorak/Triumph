@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+@export var fast: bool = false
+@onready var speed_effect = $UI/SpeedEffect
+
 #movement_animator
 @onready var movement = $Movement
 @onready var cam_movement = $CamMovement
@@ -26,6 +29,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _ready():
+	if fast:
+		speed_effect.visible = true
+	else:
+		speed_effect.visible = false
+		
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csel2r3rtscoa"
-path.s3tc="res://.godot/imported/mr_k_glow.png-bf255f15844b2420aa11e89039b9ef2e.s3tc.ctex"
+path.s3tc="res://.godot/imported/mr_k_glow.png-99e6e5451f18ab5318aa4376de3376bf.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/player/mr_k_glow.png"
-dest_files=["res://.godot/imported/mr_k_glow.png-bf255f15844b2420aa11e89039b9ef2e.s3tc.ctex"]
+source_file="res://Assets/Player/mr_k_glow.png"
+dest_files=["res://.godot/imported/mr_k_glow.png-99e6e5451f18ab5318aa4376de3376bf.s3tc.ctex"]
 
 [params]
 

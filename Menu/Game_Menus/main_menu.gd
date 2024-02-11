@@ -7,7 +7,7 @@ func _ready():
 
 func _on_start_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/train_map/train_world.tscn") # Replace with function body.
-
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _on_options_button_pressed():
 	pass # NO OPTIONS MENU RIPERONIS
