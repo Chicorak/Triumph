@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvdeasckw1ugb"]
+
+[ext_resource type="Script" path="res://Menu/Game_Menus/settings.gd" id="1_vown5"]
+[ext_resource type="FontFile" uid="uid://bhftuju555161" path="res://Assets/Font/ProtestRiot-Regular.ttf" id="2_shwi2"]
+[ext_resource type="AudioStream" uid="uid://vfi7xn3k6fhn" path="res://Assets/Audio/button_click.sfxr" id="3_6ijqw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_na1bc"]
+font = ExtResource("2_shwi2")
+font_size = 64
+
+[node name="Settings" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_vown5")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 440.0
+offset_top = 210.0
+offset_right = 840.0
+offset_bottom = 510.0
+
+[node name="Pause" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -50.5
+offset_right = 150.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/Pause"]
+layout_mode = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_na1bc")
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Panel/Pause"]
+layout_mode = 2
+text = "Resume
+"
+
+[node name="Options" type="Button" parent="Panel/Pause"]
+layout_mode = 2
+text = "Options
+"
+
+[node name="Back" type="Button" parent="Panel/Pause"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Options" type="VBoxContainer" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -50.5
+offset_right = 150.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/Options"]
+layout_mode = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_na1bc")
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Panel/Options"]
+layout_mode = 2
+text = "Resume
+"
+
+[node name="Options" type="Button" parent="Panel/Options"]
+layout_mode = 2
+text = "Options
+"
+
+[node name="Back" type="Button" parent="Panel/Options"]
+layout_mode = 2
+text = "Back
+"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6ijqw")
+
+[connection signal="pressed" from="Panel/Pause/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Panel/Pause/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Panel/Pause/Back" to="." method="_on_back_pressed"]

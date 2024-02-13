@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjjkaapbpjcvq"]
+
+[ext_resource type="Script" path="res://Components/SensitivityConfig.gd" id="1_bq6ay"]
+
+[node name="SensitivityConfig" type="Node"]
+script = ExtResource("1_bq6ay")

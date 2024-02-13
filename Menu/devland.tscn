@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkudhhvj1px6i"]
+
+[ext_resource type="Script" path="res://Menu/DEVLAND.gd" id="1_38bwo"]
+[ext_resource type="FontFile" uid="uid://bhftuju555161" path="res://Assets/Font/ProtestRiot-Regular.ttf" id="2_peari"]
+
+[node name="DEVLAND" type="Node2D"]
+position = Vector2(653, 561)
+script = ExtResource("1_38bwo")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -286.0
+offset_right = 235.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 97.0
+offset_right = 332.0
+offset_bottom = 211.0
+theme_override_constants/separation = 10
+
+[node name="Train" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_peari")
+theme_override_font_sizes/font_size = 36
+text = "Train Level
+"
+
+[node name="Church" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_peari")
+theme_override_font_sizes/font_size = 36
+text = "Church Level"
+
+[connection signal="pressed" from="Panel/VBoxContainer/Train" to="." method="_on_train_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Church" to="." method="_on_church_pressed"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://o0ik34civ4dv"]
+
+[ext_resource type="Shader" path="res://shaders/ps1-psx.gdshader" id="1_so3by"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ff0y"]
+shader = ExtResource("1_so3by")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 10
+shader_parameter/dither_size = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+material = SubResource("ShaderMaterial_3ff0y")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4

@@ -1,17 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://drym75q748ap6"]
+[gd_scene load_steps=20 format=3 uid="uid://drym75q748ap6"]
 
-[ext_resource type="Shader" path="res://shaders/ps1-psx.gdshader" id="1_kgxdn"]
 [ext_resource type="PackedScene" uid="uid://dbllnvgclnc6s" path="res://Entities/player/player.tscn" id="2_051xp"]
 [ext_resource type="PackedScene" uid="uid://bbhnulq8uslck" path="res://Assets/train.blend" id="2_dvdwj"]
+[ext_resource type="PackedScene" uid="uid://nx8hu2j041e4" path="res://Components/level_changer.tscn" id="3_qkwh4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ff0y"]
-shader = ExtResource("1_kgxdn")
-shader_parameter/enabled = true
-shader_parameter/dithering = true
-shader_parameter/colors = 10
-shader_parameter/dither_size = 2
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_siqde"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0jx5o"]
 sky_top_color = Color(0.388235, 0.0352941, 0.0352941, 1)
 sky_horizon_color = Color(0.823529, 0.411765, 0.415686, 1)
 sky_curve = 0.05
@@ -20,9 +13,9 @@ ground_horizon_color = Color(0.823529, 0.411765, 0.415686, 1)
 ground_curve = 0.117127
 
 [sub_resource type="Sky" id="Sky_03jf4"]
-sky_material = SubResource("ProceduralSkyMaterial_siqde")
+sky_material = SubResource("ProceduralSkyMaterial_0jx5o")
 
-[sub_resource type="Environment" id="Environment_bj40h"]
+[sub_resource type="Environment" id="Environment_uajmf"]
 background_mode = 2
 sky = SubResource("Sky_03jf4")
 tonemap_mode = 3
@@ -46,7 +39,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_illng"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_eyj5d"]
 resource_name = "train_land_Plane_003"
 _surfaces = [{
 "aabb": AABB(-1.00996, -0.0561021, -1.01016, 2.079, 0.722943, 2.02031),
@@ -64,7 +57,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jvjfb")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_o3urd"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_a884j"]
 resource_name = "train_land_Plane_003"
 _surfaces = [{
 "aabb": AABB(-1.00996, -0.0561021, -1.01016, 2.079, 0.722943, 2.02031),
@@ -82,7 +75,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jvjfb")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_38ah1"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_jdq3d"]
 size = Vector3(1, 0.1, 1.94238)
 
 [sub_resource type="Animation" id="Animation_ja0oo"]
@@ -199,10 +192,10 @@ _data = {
 "reset": SubResource("Animation_npx44")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hjqde"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_vkip4"]
 size = Vector3(257, 21, 23)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wu4hg"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w3trw"]
 emission_shape = 3
 emission_box_extents = Vector3(100, 5, 25)
 spread = 0.0
@@ -214,14 +207,14 @@ gravity = Vector3(0, 0, -40)
 shading_mode = 0
 disable_ambient_light = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_bqlcj"]
+[sub_resource type="BoxMesh" id="BoxMesh_exx4y"]
 material = SubResource("StandardMaterial3D_7afgt")
 size = Vector3(0.2, 0.1, 0.1)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-material = SubResource("ShaderMaterial_3ff0y")
+process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -230,18 +223,21 @@ grow_vertical = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+process_mode = 1
 handle_input_locally = false
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
-environment = SubResource("Environment_bj40h")
+environment = SubResource("Environment_uajmf")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-light_color = Color(0.878431, 0.682353, 0.666667, 1)
-light_energy = 0.5
+transform = Transform3D(-0.87905, -0.455932, 0.139273, 0.472346, -0.872499, 0.125041, 0.0645052, 0.175703, 0.982328, 0, 0, 0)
+light_color = Color(0, 0, 0, 1)
+light_energy = 1.414
+light_angular_distance = 1.71
 shadow_enabled = true
+sky_mode = 2
 
 [node name="train_land" type="Node3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
@@ -249,19 +245,19 @@ transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
 [node name="Plane_001" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/train_land"]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
 visible = false
-mesh = SubResource("ArrayMesh_illng")
+mesh = SubResource("ArrayMesh_eyj5d")
 skeleton = NodePath("")
 
 [node name="Plane_002" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/train_land"]
 transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, -0.089, 0, 1.914)
-mesh = SubResource("ArrayMesh_o3urd")
+mesh = SubResource("ArrayMesh_a884j")
 skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/train_land"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/train_land/Area3D"]
 transform = Transform3D(0.999992, 0, 0, 0, 0.999992, 0, 0, 0, 0.999992, 0, -0.049, 0)
-shape = SubResource("BoxShape3D_38ah1")
+shape = SubResource("BoxShape3D_jdq3d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/train_land"]
 libraries = {
@@ -288,16 +284,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 208, 0, 9.09197e-06)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108, 10, 4.72083e-06)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/train/StaticBody3D"]
-shape = SubResource("BoxShape3D_hjqde")
+shape = SubResource("BoxShape3D_vkip4")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="SubViewportContainer/SubViewport/train"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 24, 1.22392e-06)
 amount = 128
 lifetime = 5.0
 visibility_aabb = AABB(-204, -4, -4, 408, 8, 8)
-process_material = SubResource("ParticleProcessMaterial_wu4hg")
-draw_pass_1 = SubResource("BoxMesh_bqlcj")
+process_material = SubResource("ParticleProcessMaterial_w3trw")
+draw_pass_1 = SubResource("BoxMesh_exx4y")
 
 [node name="CharacterBody3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_051xp")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 16, -72)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 16, -99)
 fast = true
+
+[node name="LevelChanger" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_qkwh4")]

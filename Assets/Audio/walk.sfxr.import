@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://bj4x6lvx1gyn"
+path="res://.godot/imported/walk.sfxr-f662b6b27497fd705e43a5be339f300b.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/walk.sfxr"
+dest_files=["res://.godot/imported/walk.sfxr-f662b6b27497fd705e43a5be339f300b.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

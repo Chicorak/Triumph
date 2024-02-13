@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://dt3pk0gnnkmb3"
+path="res://.godot/imported/pressplay.sfxr-a8a58effe8223732d0d0f998ab881f30.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/pressplay.sfxr"
+dest_files=["res://.godot/imported/pressplay.sfxr-a8a58effe8223732d0d0f998ab881f30.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

@@ -10,14 +10,14 @@ extends CharacterBody3D
 @onready var sprite = $MeshInstance3D
 @onready var cam_origin = $CamOrigin
 
-var max_speed = 25.0
+@export var max_speed = 25.0
 var speed = max_speed
 
-var jump_velocity = 4.5
+var jump_velocity = 10
 
 var follow_cam = false
 
-var mouse_sensitivity: float = 0.05
+@export var mouse_sensitivity: float = SensitivityConfig.sens
 
 var min_yaw: float = 0
 var max_yaw: float = 360
@@ -33,12 +33,12 @@ func _ready():
 		speed_effect.visible = true
 	else:
 		speed_effect.visible = false
-		
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
 	
 
 func _unhandled_input(event) -> void:
 	if event is InputEventMouseMotion :
+		mouse_sensitivity = SensitivityConfig.sens
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 
 		cam_origin.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
@@ -46,7 +46,7 @@ func _unhandled_input(event) -> void:
 
 func _physics_process(delta):
 	if Input.is_action_pressed("exit"):
-		get_tree().quit()
+		get_tree().paused = true;
 		
 	if Input.is_action_pressed("aim"):
 		cam_movement.play("shoulder")
@@ -54,8 +54,8 @@ func _physics_process(delta):
 		cam_movement.play("RESET")
 	# Add the gravity.
 	if not is_on_floor():
-		speed = max_speed / 1.5
-		velocity.y -= gravity * delta
+		speed = max_speed / 2.5
+		velocity.y -= 3 * gravity * delta
 	else:
 		speed = max_speed
 		

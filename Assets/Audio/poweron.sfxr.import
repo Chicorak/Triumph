@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://bmvq326krffah"
+path="res://.godot/imported/poweron.sfxr-c42aa2a7a222cf35e6dc6f23c862d5ce.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/poweron.sfxr"
+dest_files=["res://.godot/imported/poweron.sfxr-c42aa2a7a222cf35e6dc6f23c862d5ce.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0
