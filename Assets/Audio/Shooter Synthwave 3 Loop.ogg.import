@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cmxbjq7865hf4"
+path="res://.godot/imported/Shooter Synthwave 3 Loop.ogg-4613f70017dd95b02290cfbf9f174141.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Shooter Synthwave 3 Loop.ogg"
+dest_files=["res://.godot/imported/Shooter Synthwave 3 Loop.ogg-4613f70017dd95b02290cfbf9f174141.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

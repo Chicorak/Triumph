@@ -1,8 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://drym75q748ap6"]
+[gd_scene load_steps=31 format=3 uid="uid://drym75q748ap6"]
 
+[ext_resource type="Shader" path="res://shaders/scans.gdshader" id="1_4g4w4"]
+[ext_resource type="AudioStream" uid="uid://cmxbjq7865hf4" path="res://Assets/Audio/Shooter Synthwave 3 Loop.ogg" id="1_oq6sf"]
 [ext_resource type="PackedScene" uid="uid://dbllnvgclnc6s" path="res://Entities/player/player.tscn" id="2_051xp"]
 [ext_resource type="PackedScene" uid="uid://bbhnulq8uslck" path="res://Assets/train.blend" id="2_dvdwj"]
+[ext_resource type="Shader" path="res://shaders/empty.gdshader" id="2_tq0dr"]
+[ext_resource type="PackedScene" uid="uid://baydhqcksd6km" path="res://Assets/rail.blend" id="3_mh0mu"]
 [ext_resource type="PackedScene" uid="uid://nx8hu2j041e4" path="res://Components/level_changer.tscn" id="3_qkwh4"]
+[ext_resource type="AudioStream" uid="uid://x86mdinoaoy4" path="res://Assets/Audio/untitled_horn.ogg" id="4_38743"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0jx5o"]
 sky_top_color = Color(0.388235, 0.0352941, 0.0352941, 1)
@@ -57,6 +62,19 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jvjfb")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_573gs"]
+render_priority = 0
+shader = ExtResource("1_4g4w4")
+shader_parameter/shine_color = Color(0.670588, 0.423529, 0.866667, 1)
+shader_parameter/cycle_interval = 2.0
+shader_parameter/shine_speed = 1.0
+shader_parameter/shine_width = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ps5q"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_573gs")
+shader = ExtResource("2_tq0dr")
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_a884j"]
 resource_name = "train_land_Plane_003"
 _surfaces = [{
@@ -74,6 +92,11 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jvjfb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f8iuq"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_573gs")
+shader = ExtResource("2_tq0dr")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jdq3d"]
 size = Vector3(1, 0.1, 1.94238)
@@ -211,6 +234,44 @@ disable_ambient_light = true
 material = SubResource("StandardMaterial3D_7afgt")
 size = Vector3(0.2, 0.1, 0.1)
 
+[sub_resource type="Animation" id="Animation_eukyy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_j5q30"]
+resource_name = "horn"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n18la"]
+_data = {
+"RESET": SubResource("Animation_eukyy"),
+"horn": SubResource("Animation_j5q30")
+}
+
 [node name="Node3D" type="Node3D"]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -227,6 +288,10 @@ process_mode = 1
 handle_input_locally = false
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport"]
+stream = ExtResource("1_oq6sf")
+autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
 environment = SubResource("Environment_uajmf")
@@ -247,11 +312,26 @@ transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
 visible = false
 mesh = SubResource("ArrayMesh_eyj5d")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_4ps5q")
+
+[node name="Rails" type="Node3D" parent="SubViewportContainer/SubViewport/train_land"]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 0)
+visible = false
+
+[node name="rail" parent="SubViewportContainer/SubViewport/train_land/Rails" instance=ExtResource("3_mh0mu")]
+transform = Transform3D(-1.09278e-06, 0, 3, 0, 3, 0, -25, 0, -1.31134e-07, 0, 0, 0)
+
+[node name="rail3" parent="SubViewportContainer/SubViewport/train_land/Rails" instance=ExtResource("3_mh0mu")]
+transform = Transform3D(-1.09278e-06, 0, 3, 0, 3, 0, -25, 0, -1.31134e-07, 0, 0, -164)
+
+[node name="rail2" parent="SubViewportContainer/SubViewport/train_land/Rails" instance=ExtResource("3_mh0mu")]
+transform = Transform3D(-1.09278e-06, 0, 3, 0, 3, 0, -25, 0, -1.31134e-07, 0, 0, 166)
 
 [node name="Plane_002" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/train_land"]
 transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, -0.089, 0, 1.914)
 mesh = SubResource("ArrayMesh_a884j")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_f8iuq")
 
 [node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/train_land"]
 
@@ -267,6 +347,13 @@ autoplay = "movement"
 
 [node name="train" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_dvdwj")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 4.7, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/train"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -32, 28.6, -1.39876e-06)
+stream = ExtResource("4_38743")
+volume_db = 50.0
+autoplay = true
+max_distance = 100.0
 
 [node name="train2" parent="SubViewportContainer/SubViewport/train" instance=ExtResource("2_dvdwj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 2.27299e-06)
@@ -294,8 +381,18 @@ visibility_aabb = AABB(-204, -4, -4, 408, 8, 8)
 process_material = SubResource("ParticleProcessMaterial_w3trw")
 draw_pass_1 = SubResource("BoxMesh_exx4y")
 
+[node name="AnimationTree" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/train"]
+libraries = {
+"": SubResource("AnimationLibrary_n18la")
+}
+autoplay = "horn"
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.999453, 0.00856311, -0.031958, 0.00943773, 0.852005, 0.523448, 0.0317108, -0.523463, 0.851458, 0.0725899, 20, -91.5313)
+visible = false
+
 [node name="CharacterBody3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_051xp")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 16, -99)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 18, -99)
 fast = true
 
 [node name="LevelChanger" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_qkwh4")]

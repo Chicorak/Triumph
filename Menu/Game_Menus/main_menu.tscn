@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4gdgsg630a8m"]
+[gd_scene load_steps=6 format=3 uid="uid://b4gdgsg630a8m"]
 
 [ext_resource type="Script" path="res://Menu/Game_Menus/main_menu.gd" id="1_x03mb"]
 [ext_resource type="PackedScene" uid="uid://bhdjj7pymql4e" path="res://Components/volume_config.tscn" id="2_jxaqi"]
 [ext_resource type="PackedScene" uid="uid://cjjkaapbpjcvq" path="res://Components/sensitivity_config.tscn" id="3_ogny1"]
 [ext_resource type="AudioStream" uid="uid://vfi7xn3k6fhn" path="res://Assets/Audio/button_click.sfxr" id="4_8058b"]
+[ext_resource type="AudioStream" uid="uid://cjwvku8michd0" path="res://Assets/Audio/(Soft Loop For Dialogues, Pause or Other Things) 9.ogg" id="5_mwtsy"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -103,12 +104,16 @@ custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 text = "Back"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_8058b")
+
+[node name="Menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mwtsy")
+autoplay = true
+
 [node name="VolumeConfig" parent="." instance=ExtResource("2_jxaqi")]
 
 [node name="SensitivityConfig" parent="." instance=ExtResource("3_ogny1")]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_8058b")
 
 [connection signal="pressed" from="Panel/main_menu/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Panel/main_menu/options_button" to="." method="_on_options_button_pressed"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://nx8hu2j041e4"]
+[gd_scene load_steps=6 format=3 uid="uid://nx8hu2j041e4"]
 
 [ext_resource type="Script" path="res://Components/level_changer.gd" id="1_wbcjq"]
+[ext_resource type="PackedScene" uid="uid://dinccp5g28w8p" path="res://Assets/bob.blend" id="2_r0d2f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fcauc"]
 size = Vector3(10, 10, 10)
@@ -18,7 +19,6 @@ fill_to = Vector2(0.7, 0.3)
 metadata/_snap_enabled = true
 
 [node name="LevelChanger" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 0)
 script = ExtResource("1_wbcjq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -28,5 +28,8 @@ shape = SubResource("BoxShape3D_fcauc")
 billboard = 1
 no_depth_test = true
 texture = SubResource("GradientTexture2D_m8tum")
+
+[node name="bob" parent="." instance=ExtResource("2_r0d2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.741189, 0, 0.511828)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

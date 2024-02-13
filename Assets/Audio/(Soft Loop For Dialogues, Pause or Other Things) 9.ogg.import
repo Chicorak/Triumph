@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cjwvku8michd0"
+path="res://.godot/imported/(Soft Loop For Dialogues, Pause or Other Things) 9.ogg-0dfcc9762131c6d9954c8b8f6d498906.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/(Soft Loop For Dialogues, Pause or Other Things) 9.ogg"
+dest_files=["res://.godot/imported/(Soft Loop For Dialogues, Pause or Other Things) 9.ogg-0dfcc9762131c6d9954c8b8f6d498906.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

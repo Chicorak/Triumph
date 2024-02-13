@@ -1,3 +1,95 @@
-[gd_scene format=3 uid="uid://c6r7qgtcmv0tc"]
+[gd_scene load_steps=13 format=3 uid="uid://c6r7qgtcmv0tc"]
+
+[ext_resource type="Texture2D" uid="uid://huyoxjly4kdg" path="res://Assets/Player/mr_k_angry.png" id="1_36i24"]
+[ext_resource type="Texture2D" uid="uid://dk1ixjtjjk163" path="res://Assets/Audio/Backgrounds/Screenshot 2024-02-12 182001.png" id="1_fhrd5"]
+[ext_resource type="Texture2D" uid="uid://nkm81hdr8omh" path="res://Assets/Audio/Backgrounds/Screenshot 2024-02-12 182046.png" id="2_exaja"]
+[ext_resource type="Texture2D" uid="uid://coo7igqm32a7a" path="res://Assets/Player/mr_k_behind.png" id="2_jabrd"]
+[ext_resource type="Texture2D" uid="uid://ggsax2tcjxio" path="res://Assets/Player/mr_k_frown.png" id="3_blrjs"]
+[ext_resource type="Texture2D" uid="uid://d2ecrqrs1eb1f" path="res://Assets/Player/mr_k_meh.png" id="4_f3o6n"]
+[ext_resource type="Texture2D" uid="uid://fe53fk38xa7f" path="res://Assets/Player/mr_k_smile.png" id="5_5fn2o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4f7am"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fhrd5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_exaja")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o40h2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u5d0j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_36i24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jabrd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_blrjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f3o6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5fn2o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_uri4p"]
+resource_name = "cutscene"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f0wky"]
+_data = {
+"cutscene": SubResource("Animation_uri4p")
+}
 
 [node name="Scene1" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(639, 362.25)
+scale = Vector2(2.00912, 2.16667)
+sprite_frames = SubResource("SpriteFrames_4f7am")
+frame = 1
+
+[node name="HBFG" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1135, 607)
+scale = Vector2(0.566406, 0.576172)
+texture = SubResource("NoiseTexture2D_o40h2")
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(88, 537)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_u5d0j")
+frame = 4
+
+[node name="Chat" type="Panel" parent="."]
+visible = false
+offset_left = 114.0
+offset_top = 578.0
+offset_right = 1114.0
+offset_bottom = 697.0
+
+[node name="Name" type="Panel" parent="Chat"]
+layout_mode = 0
+offset_left = 386.0
+offset_top = -57.0
+offset_right = 623.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f0wky")
+}

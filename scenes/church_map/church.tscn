@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://do7b7bvgqe5gj"]
+[gd_scene load_steps=28 format=3 uid="uid://do7b7bvgqe5gj"]
 
 [ext_resource type="Shader" path="res://shaders/ps1-psx.gdshader" id="1_ktlu4"]
 [ext_resource type="PackedScene" uid="uid://dbllnvgclnc6s" path="res://Entities/player/player.tscn" id="2_2wodl"]
 [ext_resource type="PackedScene" uid="uid://nx8hu2j041e4" path="res://Components/level_changer.tscn" id="3_kwnsy"]
+[ext_resource type="Texture2D" uid="uid://ejc22cgeyu7j" path="res://Assets/dilly.png" id="4_33gle"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_op50k"]
 shader = ExtResource("1_ktlu4")
@@ -400,3 +401,13 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -88, 2
 
 [node name="LevelChanger" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_kwnsy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.5103, 5.1999, 5.1884)
+
+[node name="CharacterBody3D2" type="CharacterBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 29, 0)
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/CharacterBody3D2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+texture = ExtResource("4_33gle")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport"]

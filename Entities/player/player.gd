@@ -1,11 +1,13 @@
 extends CharacterBody3D
 
+
+
 @export var fast: bool = false
 @onready var speed_effect = $UI/SpeedEffect
 
 #movement_animator
 @onready var movement = $Movement
-@onready var cam_movement = $CamMovement
+
 
 @onready var sprite = $MeshInstance3D
 @onready var cam_origin = $CamOrigin
@@ -13,7 +15,10 @@ extends CharacterBody3D
 @export var max_speed = 25.0
 var speed = max_speed
 
-var jump_velocity = 10
+var jump_velocity = 20
+
+var max_health = 100
+var health = max_health
 
 var follow_cam = false
 
@@ -48,10 +53,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("exit"):
 		get_tree().paused = true;
 		
-	if Input.is_action_pressed("aim"):
-		cam_movement.play("shoulder")
-	elif Input.is_action_just_released("aim"):
-		cam_movement.play("RESET")
+
 	# Add the gravity.
 	if not is_on_floor():
 		speed = max_speed / 2.5

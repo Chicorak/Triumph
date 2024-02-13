@@ -6,7 +6,6 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_na1bc"]
 font = ExtResource("2_shwi2")
-font_size = 64
 
 [node name="Settings" type="Node2D"]
 process_mode = 3
@@ -67,23 +66,27 @@ offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Panel/Options"]
+[node name="VolumeLabel" type="Label" parent="Panel/Options"]
 layout_mode = 2
-text = "PAUSED"
+text = "Volume"
 label_settings = SubResource("LabelSettings_na1bc")
-horizontal_alignment = 1
 
-[node name="Resume" type="Button" parent="Panel/Options"]
+[node name="VolumeSlider" type="HSlider" parent="Panel/Options"]
 layout_mode = 2
-text = "Resume
-"
+max_value = 1.0
+step = 0.1
 
-[node name="Options" type="Button" parent="Panel/Options"]
+[node name="SensLabel" type="Label" parent="Panel/Options"]
 layout_mode = 2
-text = "Options
-"
+text = "Sensitivity"
+label_settings = SubResource("LabelSettings_na1bc")
 
-[node name="Back" type="Button" parent="Panel/Options"]
+[node name="SenSlider" type="HSlider" parent="Panel/Options"]
+layout_mode = 2
+max_value = 3.0
+step = 0.2
+
+[node name="Back2" type="Button" parent="Panel/Options"]
 layout_mode = 2
 text = "Back
 "
@@ -94,3 +97,6 @@ stream = ExtResource("3_6ijqw")
 [connection signal="pressed" from="Panel/Pause/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Panel/Pause/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Panel/Pause/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="Panel/Options/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="Panel/Options/SenSlider" to="." method="_on_sen_slider_value_changed"]
+[connection signal="pressed" from="Panel/Options/Back2" to="." method="_on_back_2_pressed"]

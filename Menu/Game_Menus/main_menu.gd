@@ -35,8 +35,10 @@ func _on_back_button_pressed():
 
 func _on_volume_slider_value_changed(value):
 	VolumeConfig.save(value)
-	
+	VolumeConfig.update()
+	press.play()
 
 
 func _on_sens_slider_value_changed(value):
 	SensitivityConfig.save(value)
+	press.play()

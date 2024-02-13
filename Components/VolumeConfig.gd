@@ -21,6 +21,9 @@ func save(_volume: float):
 	volume = _volume
 	print("set volume = " + str(volume))
 
+func update():
+	AudioServer.set_bus_volume_db(_bus, linear_to_db(volume))
+	
 func load_file():
 	var file = FileAccess.open("user://volume.dat", FileAccess.READ)
 	var content = file.get_float()
